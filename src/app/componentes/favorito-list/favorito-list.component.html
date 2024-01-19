@@ -1,0 +1,38 @@
+
+<!-- Eliminar Favoritos -->
+
+<ion-list>
+  <ion-item *ngFor="let f of favoritos; let i = index">
+    <ion-thumbnail slot="start">
+      <img [src]="f.preview.source" alt="Thumb" style="max-width: 75px;" *ngIf="f.preview.source">
+    </ion-thumbnail>
+    <ion-label>
+      <h2>{{ f.name + ' - ' }}<strong>{{ f.address.country }}</strong></h2>
+    </ion-label>
+  
+<!-- Eliminar Favoritos  y camara-->
+<ion-buttons slot="end">
+              <ion-button (click)="abrirModalCamara()">
+                <ion-icon name="camera-outline"></ion-icon>
+              </ion-button>
+          
+  <ion-button (click)="confirmarEliminar(i)">
+    <ion-icon name="trash-outline" />
+  </ion-button>
+</ion-buttons>
+
+          <!-- Muestra el monto registrado -->
+         <ion-buttons>
+          <ion-button>
+            <ion-icon name="airplane-outline"/>
+         <ion-label>{{ getMontoRegistrado() | currency:'USD':'symbol':'1.0-0' }}</ion-label>
+        </ion-button>
+        </ion-buttons>
+         
+  <ion-button expand="full" (click)="abrirModal()">Registrar Viaje</ion-button>
+
+  
+
+          
+  </ion-item>
+</ion-list>

@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Ingreso de Valor del Viaje
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Valor del viaje</ion-label>
+    <ion-input [(ngModel)]="valorViaje" placeholder="Ingrese el valor"></ion-input>
+  </ion-item>
+
+  <div>
+    <p>Valor registrado: {{ valorViaje.toString() | currency:'USD' }}</p>
+  </div>
+
+  <ion-button expand="full" (click)="registrarViaje()">Registrar Viaje</ion-button>
+</ion-content>

@@ -1,0 +1,83 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Destinos Vacacionales</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-searchbar 
+  [debounce]="1000" 
+  (ionInput)="handleInput($event)">
+  </ion-searchbar>
+
+  <ion-list>
+    <ion-item *ngFor="let lugarDetalle of lugaresDetalles">
+      <ion-thumbnail slot="start">
+        <!-- Imagen  -->
+      <img [src]="lugarDetalle.preview.source" alt="Thumb" style="max-width: 75px;" *ngIf="lugarDetalle.preview.source">
+    </ion-thumbnail>
+    <!-- Nombre del lugar y pais concatenados con un guion y el pais en negrita  -->
+  <ion-label>
+    <h2>{{ lugarDetalle.name + ' - ' }}<strong>{{ lugarDetalle.address.country }}</strong></h2>
+  </ion-label>
+<!-- Icono para agregar destino a favoritos  -->
+<ion-buttons slot="end">
+  <ion-button (click)="agregarAFavoritos(lugarDetalle)">
+    <ion-icon name="add-circle-outline" />
+  </ion-button>
+</ion-buttons>
+
+    </ion-item>
+  </ion-list>
+
+  <!-- Favoritos  -->
+  
+  <ion-list>
+    <ion-item *ngFor="let lugarFavorito of favoritos; let i = index">
+      <ion-thumbnail slot="start">
+        <img [src]="lugarFavorito.preview.source" alt="Thumb" style="max-width: 75px;" *ngIf="lugarFavorito.preview.source">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ lugarFavorito.name + ' - ' }}<strong>{{ lugarFavorito.address.country }}</strong></h2>
+      </ion-label>
+
+      <!-- Eliminar Favoritos  -->
+      <ion-buttons slot="end">
+        <ion-button (click)="eliminarFavoritos(lugarFavorito)">
+          <ion-icon name="trash-outline" />
+        </ion-button>
+      </ion-buttons>
+
+      <!-- Muestra el icono y el monto registrado -->
+      <ion-buttons>
+        <ion-button>
+          <ion-icon name="airplane-outline"></ion-icon>
+          <ion-label>{{ (getMontoRegistrado() || 0) | currency:'USD':'symbol':'1.0-0' }}</ion-label>
+        </ion-button>
+      </ion-buttons>
+  
+
+  <!--Camara -->
+  <ion-buttons slot="end">
+    <ion-button (click)="abrirModalCamara()">
+      <ion-icon name="camera-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+
+
+      <!-- Viaje -->
+      
+      <ion-button expand="full" (click)="abrirModal()">Registrar Viaje</ion-button>
+      
+    </ion-item>
+
+
+    <!-- listado de pre cargados  -->
+  <app-lugar-list [listaLugar]="listaLugar" />
+
+
+
+</ion-list>
+  
+  </ion-content>

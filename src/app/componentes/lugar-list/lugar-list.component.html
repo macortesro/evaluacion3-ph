@@ -1,0 +1,40 @@
+<ion-list>
+  <ion-item *ngFor="let l of listaLugar; let i = index">
+    <ion-thumbnail slot="start">
+      <img [src]="l.imagen" alt="Thumb" style="max-width: 75px;" *ngIf="l.imagen">
+    </ion-thumbnail>
+    <ion-label>
+      <h2>{{ l.lugar + ' - '}} <strong> {{ l.pais }}</strong></h2>
+  </ion-label>
+    <br>
+
+      <!--Camara -->
+  <ion-buttons slot="end">
+    <ion-button (click)="abrirModalCamara()">
+      <ion-icon name="camera-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+
+  
+    <ion-buttons slot="end">
+      <ion-button (click)="confirmarEliminar(i)">
+        <ion-icon name="trash-outline" />
+      </ion-button>
+  </ion-buttons>
+
+         <!-- Muestra el monto registrado -->
+         <ion-buttons>
+          <ion-button>
+            <ion-icon name="airplane-outline"/>
+         <ion-label>{{ getMontoRegistrado() | currency:'USD':'symbol':'1.0-0' }}</ion-label>
+        </ion-button>
+        </ion-buttons>
+
+        
+
+         
+  <ion-button expand="full" (click)="abrirModal()">Registrar Viaje</ion-button>
+  
+  </ion-item>
+</ion-list>
+
